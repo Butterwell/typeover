@@ -21,9 +21,9 @@ var add_css = function() {
 	  font-size: 2em;
 	  color: gray;
 	}
-	body {
+/*	body {
 	  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCI+CjxmaWx0ZXIgaWQ9Im4iIHg9IjAiIHk9IjAiPgo8ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMC42IiBudW1PY3RhdmVzPSIxMCIgc3RpdGNoVGlsZXM9InN0aXRjaCI+PC9mZVR1cmJ1bGVuY2U+CjwvZmlsdGVyPgo8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iI0ZGRkZERCI+PC9yZWN0Pgo8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgZmlsdGVyPSJ1cmwoI24pIiBvcGFjaXR5PSIwLjUiPjwvcmVjdD4KPC9zdmc+"); 
-	}
+	} */
 	.hide {
 	  display: none;
 	}
@@ -109,7 +109,6 @@ var spanify_current = function (state) {
 }
 
 function backup(state) {
-	console.log("backup")
 	if (state.offset > 0) {
 		state.offset--
 		state.typed[state.offset] = state.untyped
@@ -213,6 +212,7 @@ var practice = function (string, visable_character_count, state) {
 	}
 	state.spanned = spanify_current(state)
 	state.content.innerHTML = state.spanned
+	console.log(state.offset)
 	$(".cursor").focus()
 }
 
