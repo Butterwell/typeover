@@ -37,9 +37,9 @@ function backup(state) {
 	if (state.offset > 0) {
 		state.offset--
 		state.typed[state.offset] = state.untyped
-		if (state.first_wrong === state.MAX_SAFE_INTEGER) {
-			state.correct_timings.pop()
-		}
+		// if (state.first_wrong === state.MAX_SAFE_INTEGER) {
+		// 	state.correct_timings.pop()
+		// }
 		if (state.offset === state.first_wrong) {
 			state.first_wrong = state.MAX_SAFE_INTEGER
 		}
@@ -50,8 +50,8 @@ function backup(state) {
 function correct(state, key, timestamp) {
 	state.typed[state.offset] = key
 	state.offset++
-	state.correct_timings.push(timestamp)
-	update_timing_display(state)
+	// state.correct_timings.push(timestamp)
+	// update_timing_display(state)
 }
 
 function incorrect(state, key) {
@@ -89,17 +89,17 @@ function create_timing_display(state) {
 	state.timing_display_element = document.getElementById("timing")
 }
 
-function update_timing_display(state) {
-	var sum = 0
-	var t = state.correct_timings
-	for (var i=0; i < t.length-1; i++) { sum += t[i+1] - t[i] }
-	var average_time_per_char = sum / t.length
-	var cps = 1000 / average_time_per_char
-	var wpm = cps * 60 / 5
-	var total_time = t[t.length-1] - t[0]
-	state.timing_display_element.innerHTML = "wpm: " + wpm.toFixed(0)
-	//state.timing_display_element.innerHTML = total_time.toFixed(0) + " cps: " + cps.toFixed(2) + "wpm: " + wpm.toFixed(0)
-}
+// function update_timing_display(state) {
+// 	var sum = 0
+// 	var t = state.correct_timings
+// 	for (var i=0; i < t.length-1; i++) { sum += t[i+1] - t[i] }
+// 	var average_time_per_char = sum / t.length
+// 	var cps = 1000 / average_time_per_char
+// 	var wpm = cps * 60 / 5
+// 	var total_time = t[t.length-1] - t[0]
+// 	state.timing_display_element.innerHTML = "wpm: " + wpm.toFixed(0)
+// 	//state.timing_display_element.innerHTML = total_time.toFixed(0) + " cps: " + cps.toFixed(2) + "wpm: " + wpm.toFixed(0)
+// }
 
 // Disable backspace as a page navigation event when typing
 $('#content').on("keydown", function (event) {
@@ -126,7 +126,7 @@ var eventize_content = function (state) {
 }
 
 var practice = function (string, visable_character_count, state) {
-	state.correct_timings = []
+//	state.correct_timings = []
 	state.current = string.substr(state.offset, visable_character_count).trim()
 	state.untyped = ""
 	// One array entry for every character position
@@ -170,7 +170,7 @@ state.first_wrong = state.MAX_SAFE_INTEGER
 function init_via_text(element, text) {
 	state.content = element
 	eventize_content(state)
-	create_timing_display(state)
+//	create_timing_display(state)
     practice(text, text.length, state)
 }
 
@@ -192,7 +192,7 @@ function go_practice( xhr ) {
 		text = xhr.responseText.substring(chunk_param[0]-2, chunk_param[1]-2)
 	}
     eventize_content(state)
-	create_timing_display(state)
+//	create_timing_display(state)
     practice(text, text.length, state)
 }
 
