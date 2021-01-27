@@ -166,11 +166,20 @@ var state = {}
 state.offset = 0 // Current offset in text
 state.MAX_SAFE_INTEGER = 9007199254740991
 state.first_wrong = state.MAX_SAFE_INTEGER
-state.content = document.getElementById("content")
 
-var chunk_param = [1876, 1876+613]
-//var chunk_param = [1876+10, 1876+34]
-get_file_chunk("aTaleofTwoCities.txt", chunk_param, go_practice)
+function init_via_text(element, text) {
+	state.content = element
+	eventize_content(state)
+	create_timing_display(state)
+    practice(text, text.length, state)
+}
+
+function init_dickens(element) {
+	state.content = element;
+	var chunk_param = [1876, 1876+613]
+	//var chunk_param = [1876+10, 1876+34]
+	get_file_chunk("aTaleofTwoCities.txt", chunk_param, go_practice)	
+}
 
 function go_practice( xhr ) {
 	var text = ""
