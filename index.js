@@ -1,3 +1,79 @@
+var add_css = function() {
+	const style = document.createElement('style');
+	style.textContent = `
+	@import url(//fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+	@import url(//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+	@import url(//fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+	.overtype {
+	  font-family: 'Ubuntu Mono';
+	  font-weight: normal;
+	  font-size: 1.3em;
+	  margin-left: 25%;
+	  margin-right: 25%;
+	  margin-top: 2em;
+	}
+	.overtype pre {
+	  font-family: 'Ubuntu Mono'; /* Firefox */
+	}
+	.rate {
+	  font-family: 'Ubuntu Mono';
+	  font-weight: normal;
+	  font-size: 2em;
+	  color: gray;
+	}
+	body {
+	  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCI+CjxmaWx0ZXIgaWQ9Im4iIHg9IjAiIHk9IjAiPgo8ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMC42IiBudW1PY3RhdmVzPSIxMCIgc3RpdGNoVGlsZXM9InN0aXRjaCI+PC9mZVR1cmJ1bGVuY2U+CjwvZmlsdGVyPgo8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iI0ZGRkZERCI+PC9yZWN0Pgo8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgZmlsdGVyPSJ1cmwoI24pIiBvcGFjaXR5PSIwLjUiPjwvcmVjdD4KPC9zdmc+"); 
+	}
+	.hide {
+	  display: none;
+	}
+	#content:focus {
+	  outline: none;
+	}
+	span:focus {
+	  outline: none;
+	}
+	.gray {
+	  color: #AAAAAA;
+	}
+	.wrong {
+	  color: #d8000c;
+	  text-shadow: #ffbaba 1px 0 5px, #ffbaba -1px 0 5px, #ffbaba 0 1px 5px, #ffbaba 0 -1px 5px;
+	  border-radius: 5%;
+	  box-shadow: inset 0 0 2em #ff9a9a;
+	}
+
+	.cursor {
+	  position: relative;
+	}
+	.cursor::before {
+	  content: "|";
+	  animation: blinker 1s linear infinite;
+	  position: absolute;
+	  color: black;
+	  left: -0.2em;
+	}
+	@keyframes blinker {  
+	  50% { opacity: 0; }
+	}
+.splash {
+  position: absolute;
+  right: 0.4em;
+}
+	.fa {
+		text-decoration: none;
+		}
+  .fa-twitter-square {
+	  color: black;
+  }
+	iframe {
+	  overflow: hidden;
+	}
+  `;
+	document.head.append(style);
+}
+
+
 var spanify_current = function (state) {
 	var a = state.current
 	var html = "<pre>"
@@ -168,6 +244,7 @@ state.MAX_SAFE_INTEGER = 9007199254740991
 state.first_wrong = state.MAX_SAFE_INTEGER
 
 function init_via_text(element, text) {
+	add_css()
 	state.content = element
 	eventize_content(state)
 //	create_timing_display(state)
